@@ -1,0 +1,10 @@
+name = "scientific_calculator"
+uuid = "f1d0b104-0a02-4a50-a358-7809446bf25d"
+version = "0.1.0"
+authors = ["Lilstella <luisstella.m@gmail.com>"]
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
