@@ -51,4 +51,12 @@ using scientific_calculator
         restart!(calc)
         @test calc.value == 0.0
     end
+
+    @testset "Fast Mode Toggle" begin
+        velocity!(calc, true)
+        @test calc.fast_mode == true
+
+        velocity!(calc, false)
+        @test calc.fast_mode == false
+    end
 end
