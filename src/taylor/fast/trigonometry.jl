@@ -1,4 +1,4 @@
-module fast 
+module fast_trigonometry
 
 export f_sin, f_cos, f_exp, f_factorial
 

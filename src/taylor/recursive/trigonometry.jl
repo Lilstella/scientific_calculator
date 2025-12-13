@@ -1,4 +1,4 @@
-module recursive
+module recursive_trigonometry
 
 export r_factorial, r_sin, r_cos, r_exp
 
