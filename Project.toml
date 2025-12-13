@@ -3,6 +3,12 @@ uuid = "f1d0b104-0a02-4a50-a358-7809446bf25d"
 version = "0.1.0"
 authors = ["Lilstella <luisstella.m@gmail.com>"]
 
+[deps]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+
+[compat]
+BenchmarkTools = "1.6.3"
+
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
