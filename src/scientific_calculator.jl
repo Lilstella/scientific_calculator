@@ -6,8 +6,8 @@ export Calculator,
     power!,
     restart!, velocity!, precision!
 
-include("taylor/taylor.jl")
-using .taylor
+include("functions/functions.jl")
+using .functions
 
 mutable struct Calculator{T<:Real}
     value::T

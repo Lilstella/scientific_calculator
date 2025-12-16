@@ -1,4 +1,4 @@
-module taylor
+module functions
 
 include("fast/trigonometry.jl")
 include("recursive/trigonometry.jl")
