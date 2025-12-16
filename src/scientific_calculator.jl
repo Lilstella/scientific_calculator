@@ -3,6 +3,7 @@ module scientific_calculator
 export Calculator,
     add!, substract!, multiply!, divide!,
     factorial!, sin!, cos!, exp!,
+    power!,
     restart!, velocity!
 
 include("taylor/taylor.jl")
@@ -31,6 +32,8 @@ sin!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_sin(x, calc.te
 cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(x, calc.terms) : r_cos(x, 0, calc.terms)
 
 exp!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_exp(x, calc.terms) : r_exp(x, 0, calc.terms)
+
+power!(calc::Calculator, x::Real, n::Int) = calc.value = calc.fast_mode ? f_power(x, n) : r_power(x, n)
 
 restart!(calc::Calculator) = calc.value = 0.0
 

@@ -46,6 +46,15 @@ using scientific_calculator
         @test isapprox(calc.value, ℯ; atol=1e-5)
     end
 
+    @testset "Power" begin
+        power!(calc, 2.0, 3)
+        @test calc.value == 8.0
+
+        power!(calc, 2.0, -2)
+        @test isapprox(calc.value, 0.25; atol=1e-5)
+
+    end
+
     @testset "Restart" begin
         add!(calc, 10.0, 5.0)
         restart!(calc)
