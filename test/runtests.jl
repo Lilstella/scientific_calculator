@@ -68,4 +68,12 @@ using scientific_calculator
         velocity!(calc, false)
         @test calc.fast_mode == false
     end
+
+    @testset "Precision Setting" begin
+        precision!(calc, 20)
+        @test calc.terms == 20
+
+        precision!(calc, 5)
+        @test calc.terms == 5
+    end
 end

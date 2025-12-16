@@ -4,7 +4,7 @@ export Calculator,
     add!, substract!, multiply!, divide!,
     factorial!, sin!, cos!, exp!,
     power!,
-    restart!, velocity!
+    restart!, velocity!, precision!
 
 include("taylor/taylor.jl")
 using .taylor
