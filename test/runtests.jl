@@ -70,10 +70,14 @@ using scientific_calculator
     end
 
     @testset "Precision Setting" begin
-        precision!(calc, 20)
+        precision!(calc, :high)
+        @test calc.precision === :high
         @test calc.terms == 20
+        @test calc.tolerance == 1e-12
 
-        precision!(calc, 5)
+        precision!(calc, :low)
+        @test calc.precision === :low
         @test calc.terms == 5
+        @test calc.tolerance == 1e-3
     end
 end

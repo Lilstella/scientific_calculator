@@ -6,16 +6,36 @@ export Calculator,
     power!,
     restart!, velocity!, precision!
 
+include("config/precision.jl")
+using .PrecisionConfig: @apply_precision
+
 include("functions/functions.jl")
 using .functions
 
 mutable struct Calculator{T<:Real}
     value::T
     fast_mode::Bool
+    precision::Symbol
     terms::Int
+    tolerance::T
 end
 
-Calculator(; fast_mode=false, terms=10) = Calculator(0.0, fast_mode, terms)
+function Calculator{T}(; 
+      fast_mode::Bool=false,
+      precision::Symbol=:medium
+    ) where {T<:Real}
+
+    calc = Calculator{T}(zero(T), fast_mode, precision, 0, zero(T))
+    @apply_precision(calc, precision)
+end
+
+Calculator(; fast_mode=false, precision=:medium) = Calculator{Float64}(; fast_mode, precision)
+
+restart!(calc::Calculator) = (calc.value = zero(calc.value))
+
+velocity!(calc::Calculator, fast_mode::Bool) = (calc.fast_mode = fast_mode)
+
+precision!(calc::Calculator, precision::Symbol) = @apply_precision(calc, precision)
 
 add!(calc::Calculator, a::Float64, b::Float64) = calc.value = a + b
 
@@ -34,11 +54,5 @@ cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(x, calc.te
 exp!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_exp(x, calc.terms) : r_exp(x, 0, calc.terms)
 
 power!(calc::Calculator, x::Real, n::Int) = calc.value = calc.fast_mode ? f_power(x, n) : r_power(x, n)
-
-restart!(calc::Calculator) = calc.value = 0.0
-
-velocity!(calc::Calculator, fast_mode::Bool) = calc.fast_mode = fast_mode
-
-precision!(calc::Calculator, terms::Int) = calc.terms = terms
 
 end
