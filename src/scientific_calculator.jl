@@ -3,7 +3,7 @@ module scientific_calculator
 export Calculator,
     add!, substract!, multiply!, divide!,
     factorial!, sin!, cos!, exp!,
-    power!,
+    power!, sqrt!,
     restart!, velocity!, precision!
 
 include("config/precision.jl")
@@ -54,5 +54,7 @@ cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(x, calc.te
 exp!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_exp(x, calc.terms) : r_exp(x, 0, calc.terms)
 
 power!(calc::Calculator, x::Real, n::Int) = calc.value = calc.fast_mode ? f_power(x, n) : r_power(x, n)
+
+sqrt!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_sqrt(x, calc.tolerance) : r_sqrt(x, calc.tolerance)
 
 end
