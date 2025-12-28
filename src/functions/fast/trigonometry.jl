@@ -17,7 +17,7 @@ function f_sin(x::Real, terms::Int = 10)
     x = float(x)
     x2 = x * x
 
-    term = 1.0
+    term = x
     total = term
 
     for n in 1:terms-1

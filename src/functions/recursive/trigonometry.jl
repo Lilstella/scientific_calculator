@@ -14,16 +14,20 @@ function r_factorial(n::Int)
     return n * r_factorial(n - 1)
 end
 
-function r_sin(x::Real, n::Int = 0, terms::Int = 10)
-    if terms == 0
-        return 0
+function r_sin(x::Real, terms::Int)
+    return _r_sin(x, 0, float(x), terms)
+end
+
+function _r_sin(x::Real, n::Int = 0, term::Float64 = float(x), terms::Int = 10)
+    if n == terms
+        return 0.0
     end
 
-    sign = isodd(n) ? -1 : 1
-    exponent = 2*n + 1
-    value = (sign * (x ^ exponent)) / r_factorial(2*n + 1)
-    
-    return value + r_sin(x, n + 1, terms - 1)
+    if n > 0
+        term *= -x^2 / ((2n) * (2n + 1))
+    end
+
+    return term + _r_sin(x, n + 1, term, terms)
 end
 
 function r_cos(x::Real, n::Int = 0, terms::Int = 10)

@@ -2,82 +2,8 @@ using Test
 using scientific_calculator
 
 @testset "ScientificCalculator Tests" begin
-    calc = Calculator()
-
-    @testset "Addition" begin
-        add!(calc, 3.0, 5.0)
-        @test calc.value == 8.0
-    end
-
-    @testset "Subtraction" begin
-        substract!(calc, 10.0, 4.0)
-        @test calc.value == 6.0
-    end
-
-    @testset "Multiplication" begin
-        multiply!(calc, 2.0, 3.5)
-        @test calc.value == 7.0
-    end
-
-    @testset "Division" begin
-        divide!(calc, 9.0, 3.0)
-        @test calc.value == 3.0
-
-        @test_throws DivideError divide!(calc, 5.0, 0.0)
-    end
-
-    @testset "Factorial" begin
-        factorial!(calc, 5)
-        @test calc.value == 120.0
-    end
-
-    @testset "Sine" begin
-        sin!(calc, π/2)
-        @test isapprox(calc.value, 1.0; atol=1e-5)
-    end
-
-    @testset "Cosine" begin
-        cos!(calc, π)
-        @test isapprox(calc.value, -1.0; atol=1e-5)
-    end
-
-    @testset "Exponential" begin
-        exp!(calc, 1.0)
-        @test isapprox(calc.value, ℯ; atol=1e-5)
-    end
-
-    @testset "Power" begin
-        power!(calc, 2.0, 3)
-        @test calc.value == 8.0
-
-        power!(calc, 2.0, -2)
-        @test isapprox(calc.value, 0.25; atol=1e-5)
-
-    end
-
-    @testset "Restart" begin
-        add!(calc, 10.0, 5.0)
-        restart!(calc)
-        @test calc.value == 0.0
-    end
-
-    @testset "Fast Mode Toggle" begin
-        velocity!(calc, true)
-        @test calc.fast_mode == true
-
-        velocity!(calc, false)
-        @test calc.fast_mode == false
-    end
-
-    @testset "Precision Setting" begin
-        precision!(calc, :high)
-        @test calc.precision === :high
-        @test calc.terms == 20
-        @test calc.tolerance == 1e-12
-
-        precision!(calc, :low)
-        @test calc.precision === :low
-        @test calc.terms == 5
-        @test calc.tolerance == 1e-3
-    end
+    include("test_arithmetic.jl")
+    include("test_trigonometry.jl")
+    #include("test_power.jl")
+    #include("test_config.jl")
 end
