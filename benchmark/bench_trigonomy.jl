@@ -1,5 +1,5 @@
 using BenchmarkTools
-using scientific_calculator
+using ScientificCalculator
 
 calc_fast = Calculator(fast_mode=true)
 calc_slow = Calculator(fast_mode=false)

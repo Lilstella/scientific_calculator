@@ -1,4 +1,4 @@
-module scientific_calculator
+module ScientificCalculator
 
 export Calculator,
     add!, substract!, multiply!, divide!,
@@ -10,7 +10,7 @@ include("config/precision.jl")
 using .PrecisionConfig: @apply_precision
 
 include("functions/functions.jl")
-using .functions
+using .Functions
 include("helper/angle.jl")
 using .Angle
 

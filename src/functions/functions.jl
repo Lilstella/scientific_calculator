@@ -1,4 +1,4 @@
-module functions
+module Functions
 
 include("fast/trigonometry.jl")
 include("recursive/trigonometry.jl")
