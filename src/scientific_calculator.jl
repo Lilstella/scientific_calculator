@@ -1,4 +1,4 @@
-module ScientificCalculator
+module scientific_calculator
 
 export Calculator,
     add!, substract!, multiply!, divide!,

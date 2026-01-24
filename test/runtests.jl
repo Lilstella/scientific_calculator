@@ -1,5 +1,5 @@
 using Test
-using ScientificCalculator
+using scientific_calculator
 
 @testset "ScientificCalculator Tests" begin
     include("test_arithmetic.jl")
