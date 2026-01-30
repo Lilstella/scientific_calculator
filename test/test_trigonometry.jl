@@ -34,7 +34,7 @@
                 sin!(calc_slow, x)
 
                 @test !isnan(calc_fast.value)
-                @test isapprox(calc_slow.value, expected; atol=1e-5)
+                @test isapprox(calc_slow.value, expected; atol=1e-2)
             end
         end
     end

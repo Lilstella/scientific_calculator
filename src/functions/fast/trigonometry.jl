@@ -2,6 +2,9 @@ module fast_trigonometry
 
 export f_sin, f_cos, f_exp, f_factorial
 
+include("../../helper/angle.jl")
+using .Angle
+
 function f_factorial(n::Integer)
     n < 0 && throw(ArgumentError("There is not factorial for negative errors"))
 
@@ -14,7 +17,7 @@ function f_factorial(n::Integer)
 end
 
 function f_sin(x::Real, terms::Int = 10)
-    x = float(x)
+    x = normalize_angle(float(x))
     x2 = x * x
 
     term = x

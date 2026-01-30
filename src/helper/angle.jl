@@ -3,6 +3,12 @@ module Angle
 
     function normalize_angle(x::Real)
         x = float(x)
-        return mod(x + π, 2π) - π
+
+        result = rem2pi(x, RoundNearest)
+
+        if abs(result) < 1e-15
+            return 0.0
+        end
+        return result
     end
 end

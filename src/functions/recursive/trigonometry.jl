@@ -2,6 +2,9 @@ module recursive_trigonometry
 
 export r_factorial, r_sin, r_cos, r_exp
 
+include("../../helper/angle.jl")
+using .Angle
+
 function r_factorial(n::Int)
     if n < 0
         throw(ArgumentError("There is not factorial for negative errors"))
@@ -15,6 +18,10 @@ function r_factorial(n::Int)
 end
 
 function r_sin(x::Real, terms::Int)
+    x = normalize_angle(float(x))
+    if abs(x) < 1e-15
+        return 0.0
+    end
     return _r_sin(x, 0, float(x), terms)
 end
 
@@ -24,7 +31,7 @@ function _r_sin(x::Real, n::Int = 0, term::Float64 = float(x), terms::Int = 10)
     end
 
     if n > 0
-        term *= -x^2 / ((2n) * (2n + 1))
+        term *= -x * x / ((2n) * (2n + 1))
     end
 
     return term + _r_sin(x, n + 1, term, terms)

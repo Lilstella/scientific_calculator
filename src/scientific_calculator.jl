@@ -11,8 +11,6 @@ using .PrecisionConfig: @apply_precision
 
 include("functions/functions.jl")
 using .Functions
-include("helper/angle.jl")
-using .Angle
 
 mutable struct Calculator{T<:Real}
     value::T
@@ -50,11 +48,11 @@ divide!(calc::Calculator, a::Float64, b::Float64) = b == 0.0 ? throw(DivideError
 
 factorial!(calc::Calculator, n::Int) = calc.value = calc.fast_mode ? f_factorial(n) : r_factorial(n)
 
-sin!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_sin(normalize_angle(x), calc.terms) : r_sin(normalize_angle(x), calc.terms)
+sin!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_sin(x, calc.terms) : r_sin(x, calc.terms)
 
-cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(normalize_angle(x), calc.terms) : r_cos(normalize_angle(x), 0, calc.terms)
+cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(x, calc.terms) : r_cos(x, 0, calc.terms)
 
-exp!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_exp(normalize_angle(x), calc.terms) : r_exp(normalize_angle(x), 0, calc.terms)
+exp!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_exp(x, calc.terms) : r_exp(x, 0, calc.terms)
 
 power!(calc::Calculator, x::Real, n::Int) = calc.value = calc.fast_mode ? f_power(x, n) : r_power(x, n)
 
