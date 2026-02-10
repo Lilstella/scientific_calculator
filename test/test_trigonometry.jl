@@ -39,6 +39,27 @@
         end
     end
 
+    @testset "Cosine" begin
+        for precision in (:low, :medium, :high, :extreme)
+            calc_fast = Calculator(fast_mode=true)
+            calc_slow = Calculator(fast_mode=false)
+
+            precision!(calc_fast, precision)
+            precision!(calc_slow, precision)
+
+            for (x, expected) in (
+                (π, -1.0),
+                (0.0, 1.0),
+                (π/2, 0.0)
+            )
+                cos!(calc_fast, x)
+                cos!(calc_slow, x)
+
+                @test !isnan(calc_fast.value)
+                @test isapprox(calc_slow.value, expected; atol=1e-2)
+            end
+        end
+    end
 #=
     @testset "Cosine" begin
         cos!(calc, π)

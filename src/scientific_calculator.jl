@@ -50,7 +50,7 @@ factorial!(calc::Calculator, n::Int) = calc.value = calc.fast_mode ? f_factorial
 
 sin!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_sin(x, calc.terms) : r_sin(x, calc.terms)
 
-cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(x, calc.terms) : r_cos(x, 0, calc.terms)
+cos!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_cos(x, calc.terms) : r_cos(x, calc.terms)
 
 exp!(calc::Calculator, x::Real) = calc.value = calc.fast_mode ? f_exp(x, calc.terms) : r_exp(x, 0, calc.terms)
 
